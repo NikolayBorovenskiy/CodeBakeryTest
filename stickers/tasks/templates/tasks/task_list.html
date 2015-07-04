@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block title %}Mr. Pencil - Рабочий стол{% endblock title %}
+
+{% block nav_class_desktop %}active{% endblock %}
+
+{% block custom_css %}
+    <link href="{% static "css/desktop.css" %}" rel="stylesheet">
+{% endblock custom_css %}
+
+
+{% block main_content %}
+  Hello task list!
+{% endblock main_content %}

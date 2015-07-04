@@ -44,10 +44,10 @@
           <div class="masthead clearfix custom">
             <div class="inner">
 
-              <a href="#"><img class="logo masthead-brand" src="{% static "images/logo.gif" %}"></a>
+              <a href="/"><img class="logo masthead-brand" src="{% static "images/logo.gif" %}"></a>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="{% block nav_class_desktop %}{% endblock %}"><a href="#">Рабочий стол</a></li>
+                  <li class="{% block nav_class_desktop %}{% endblock %}"><a href="{% url 'tasks:tasks-list' %}">Рабочий стол</a></li>
                   <li class="{% block nav_class_sign_up %}{% endblock %}"><a href="#">Sign Up</a></li>
                   <li class="{% block nav_class_sign_in %}{% endblock %}"><a href="#">Sign In</a></li>
                 </ul>
