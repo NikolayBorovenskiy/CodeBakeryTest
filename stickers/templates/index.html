@@ -8,9 +8,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="{% static "images/icon.gif" %}">
 
-    <title>Cover Template for Bootstrap</title>
+    <title>{% block title %}Mr. Pencil{% endblock title %}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
@@ -18,7 +18,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static "bootstrap/css/cover.css" %}" rel="stylesheet">
-
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="{% static "JS/ie-emulation-modes-warning.js" %}"></script>
@@ -38,30 +38,34 @@
 
         <div class="cover-container">
 
-          <div class="masthead clearfix">
+          <div class="masthead clearfix custom">
             <div class="inner">
-              <h3 class="masthead-brand">Cover</h3>
+
+              <a href="#"><img class="logo masthead-brand" src="{% static "images/logo.gif" %}"></a>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li class="active"><a href="#">Рабочий стол</a></li>
+                  <li><a href="#">Sign Up</a></li>
+                  <li><a href="#">Sign In</a></li>
                 </ul>
               </nav>
             </div>
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Cover your page.</h1>
-            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+            <h1 class="cover-heading">Со мной легко!</h1>
+            <p class="lead">Хочешь везде успеть?</p>
+            <p class="lead">Хочешь ничего не забыть?</p>
+            <p class="lead">Хочешь не рисовать крестики на руке?</p>
+            <p class="lead">Дружи со мной и память тебя не подведет!</p>
             <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Learn more</a>
+              <a href="#" class="btn btn-lg btn-default">Присоедениться к нам</a>
             </p>
           </div>
 
-          <div class="mastfoot">
+          <div class="mastfoot custom-footer">
             <div class="inner">
-              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+              <p>Самый тупой карандаш - острее нашей памяти. @Mr. Pencil</p>
             </div>
           </div>
 

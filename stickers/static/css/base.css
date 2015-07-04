@@ -1,0 +1,18 @@
+.logo{
+    width: 120px;
+    height: 120px;
+    padding: 0px;
+    margin:-34px 0px 0px 0px;
+}
+
+.custom{
+    background-color: #333333;
+    border: 2px solid #000;
+}
+
+.custom-footer{
+    background-color: #FF9900;
+    color: #333333;
+    border: 2px solid #fff;
+
+}
