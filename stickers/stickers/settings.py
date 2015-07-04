@@ -25,6 +25,8 @@ SECRET_KEY = 'q#tunvieo)z)nr8-^sxbc69#b2pwl-9rgz8gf*+)8@^0b+f3*b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+TEMPLATE_DEBUG = True
+
 ALLOWED_HOSTS = []
 
 
@@ -52,21 +54,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'stickers.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
 
 WSGI_APPLICATION = 'stickers.wsgi.application'
 
@@ -100,3 +87,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
