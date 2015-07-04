@@ -2,3 +2,15 @@ body{
     background-color: #ffffff;
 
 }
+
+.thumbnail{
+    display: inline-block;
+    background-color: #FFCC00;
+    position: relative;
+}
+
+.btm-bottom{
+    position: absolute;
+    bottom: 2px;
+    right: 2%;
+}
