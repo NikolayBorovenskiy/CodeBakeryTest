@@ -14,7 +14,10 @@ class Task (models.Model):
     #user = models.ForeignKey(Client)
     impotent = models.BooleanField(verbose_name=u'Важное')
     time_public = models.DateTimeField(verbose_name=u'Время создания', editable=True, auto_now_add=True)
-    time_finish = models.DateField(blank=True, null=True, verbose_name=u'Время окончания')
+    time_finish = models.DateField(blank=True, null=True, verbose_name=u'Срок выполнения', help_text='Привет')
+
+    class Meta:
+        ordering = ['-time_public']
 
     def __unicode__(self):
         return self.title

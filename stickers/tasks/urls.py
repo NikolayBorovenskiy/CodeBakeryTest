@@ -4,6 +4,9 @@ from tasks import views
 
 urlpatterns = [
     url(r'^$', views.TaskListView.as_view(), name = 'tasks-list'),
+    url(r'^(?P<pk>\d+)$', views.TaskDetailView.as_view(), name = 'task-detail'),
+    url(r'^newtask/$', views.TaskCreateView.as_view(), name = 'create-task'),
+
     #url(r'^(?P<pk>\d+)/$', views.CourseDetailView.as_view(), name = 'course'),
     #Урлы для редактирование курса
     #url(r'^add/$', views.CourseCreateView.as_view(), name = 'create-course'),

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block title %}Mr. Pencil - задание {{ task.id }}{% endblock title %}
+
+{% block nav_class_desktop %}{% endblock %}
+
+{% block custom_css %}
+    <link href="{% static "css/task-detail.css" %}" rel="stylesheet">
+{% endblock custom_css %}
+
+{% block main_content %}
+    {{ task.title }}
+{% endblock main_content %}
