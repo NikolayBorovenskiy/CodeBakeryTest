@@ -12,5 +12,34 @@ body{
 .btm-bottom{
     position: absolute;
     bottom: 2px;
-    right: 2%;
+    right: 5%;
 }
+
+.main-screen{
+    position: absolute;
+    min-height: 700px;
+    background-color: #777777;
+}
+
+.thumbnail-custom{
+    min-width: 250px;
+}
+
+a{
+    color: #333333;
+    text-shadow: none;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #333333;
+}
+
+.theme p{
+    text-transform: uppercase;
+    color: #009999;
+
+    padding-left: 60%;
+}
+
+

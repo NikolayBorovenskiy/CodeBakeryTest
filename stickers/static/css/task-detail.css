@@ -1,0 +1,20 @@
+.btn-group-custom{
+    padding-left: 80%;
+}
+
+.settings{
+    color:#FFCC00;
+}
+
+h4 {
+    margin-top: 40px;
+    text-transform: uppercase;
+}
+
+.table-responsive, a{
+    color: #666666;
+}
+
+a:hover{
+    color: #000000;
+}

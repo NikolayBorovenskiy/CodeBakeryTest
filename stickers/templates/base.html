@@ -41,24 +41,25 @@
 
         <div class="cover-container">
           <!--Head-->
-          <div class="masthead clearfix custom">
-            <div class="inner">
 
-              <a href="/"><img class="logo masthead-brand" src="{% static 'images/logo.gif' %}" title='Hello! I am Mr. Pencil'></a>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="{% block nav_class_desktop %}{% endblock %}"><a href="{% url 'tasks:tasks-list' %}">Рабочий стол</a></li>
-                  <li class="{% block nav_class_sign_up %}{% endblock %}"><a href="#">Sign Up</a></li>
-                  <li class="{% block nav_class_sign_in %}{% endblock %}"><a href="#">Sign In</a></li>
-                </ul>
-              </nav>
+            <div class="masthead clearfix custom">
+              <div class="inner">
+
+                <a href="/"><img class="logo masthead-brand" src="{% static 'images/logo.gif' %}" title='Hello! I am Mr. Pencil'></a>
+                <nav>
+                  <ul class="nav masthead-nav">
+                    <li class="{% block nav_class_desktop %}{% endblock %}"><a href="{% url 'tasks:tasks-list' %}">Рабочий стол</a></li>
+                    <li class="{% block nav_class_sign_up %}{% endblock %}"><a href="#">Sign Up</a></li>
+                    <li class="{% block nav_class_sign_in %}{% endblock %}"><a href="#">Sign In</a></li>
+                  </ul>
+                </nav>
+              </div>
             </div>
+          <div class="row row-wrapper">
+            {% block main_content %}
+
+            {% endblock main_content %}
           </div>
-
-          {% block main_content %}
-
-          {% endblock main_content %}
-
           <!--Footer-->
           <div class="mastfoot custom-footer">
             <div class="inner">

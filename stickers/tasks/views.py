@@ -6,8 +6,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from tasks.models import Task
-
+from tasks.models import Task, TaskItem
 
 
 # Create task list
@@ -82,3 +81,66 @@ class TaskUpdateView(UpdateView):
         context['page_title'] = u"Редактирование напоминалки"
         #context['username'] = auth.get_user(self.request).username
         return context
+
+
+#Create item of task
+class TaskItemCreateView(CreateView):
+    model = TaskItem
+    #success_url = reverse_lazy('tasks:tasks-list')
+    fields = ['discription', 'status', 'commontask']
+
+    def get_initial(self):
+        return {'commontask': self.kwargs['pk'],}
+
+    def get_success_url(self):
+        return reverse_lazy('tasks:task-detail', kwargs={'pk':self.kwargs['pk']})
+
+    def get_context_data(self, **kwargs):
+        context = super(TaskItemCreateView, self).get_context_data(**kwargs)
+        context['page_title'] = u"Создать задачу"
+        #context['username'] = auth.get_user(self.request).username
+        return context
+
+    def form_valid(self, form):
+        self.application = form.save()
+        messages.success(self.request, u'Задача создана')
+        return super(TaskItemCreateView, self).form_valid(form)
+
+
+#Update current task
+class TaskItemUpdateView(UpdateView):
+    model = TaskItem
+    #success_url = reverse_lazy('tasks:tasks-list')
+    fields = ['discription', 'status', 'commontask']
+
+
+    def get_success_url(self):
+        taskitem = get_object_or_404(TaskItem, id = self.kwargs['pk'])
+        return reverse_lazy('tasks:task-detail', kwargs={'pk':taskitem.commontask.id})
+
+    def form_valid(self, form):
+        self.application = form.save()
+        messages.success(self.request, u'Задача изменена')
+        return super(TaskItemUpdateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(TaskItemUpdateView, self).get_context_data(**kwargs)
+        context['page_title'] = u"Редактирование задачи"
+        #taskitem = get_object_or_404(TaskItem, id = self.kwargs['id'])
+        #context['taskitem'] = taskitem
+        #context['username'] = auth.get_user(self.request).username
+        return context
+
+
+#Delete current task
+class TaskItemDeleteView(DeleteView):
+    model = TaskItem
+
+    def get_success_url(self):
+        taskitem = get_object_or_404(TaskItem, id = self.kwargs['pk'])
+        return reverse_lazy('tasks:task-detail', kwargs={'pk':taskitem.commontask.id})
+
+    def delete(self, request, *args, **kwargs):
+        taskitem = super (TaskItemDeleteView, self).delete(request, *args, **kwargs)
+        messages.success(self.request, u'Задача {} удалена'.format(self.object.discription))
+        return taskitem

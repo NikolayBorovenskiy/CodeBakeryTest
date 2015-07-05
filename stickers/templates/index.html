@@ -5,13 +5,13 @@
 {% block title %}Mr. Pencil - Начало{% endblock title %}
 
 
-{% block css_for_page %}
-    <link href="{% static "students-list.css" %}" rel="stylesheet">
-{% endblock css_for_page %}
+{% block custom_css %}
+    <link href="{% static "css/index.css" %}" rel="stylesheet">
+{% endblock custom_css %}
 
 
 {% block main_content %}
-  <div class="inner cover">
+  <div class="inner cover custom-div">
     <h1 class="cover-heading">Со мной легко!</h1>
     <p class="lead">Хочешь везде успеть?</p>
     <p class="lead">Хочешь ничего не забыть?</p>

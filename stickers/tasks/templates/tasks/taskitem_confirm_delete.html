@@ -2,7 +2,7 @@
 
 {% load static from staticfiles %}
 
-{% block title %}Mr. Pencil - удаление напоминалки {{ task.id }} {% endblock title %}
+{% block title %}Mr. Pencil - удаление задачи {{ taskitem.id }} {% endblock title %}
 
 
 {% block custom_css %}
@@ -12,7 +12,7 @@
 
 
 {% block main_content %}
-  <h3> Напоминалка {{ task.title }} будет удалена!</h3><br>
+  <h3> Задача {{ taskitem.discription }} будет удалена!</h3><br>
     <!--Удаление напоминалки-->
     <form class ="custome" method="post">
       {% csrf_token %}
