@@ -6,6 +6,8 @@ urlpatterns = [
     url(r'^$', views.TaskListView.as_view(), name = 'tasks-list'),
     url(r'^(?P<pk>\d+)$', views.TaskDetailView.as_view(), name = 'task-detail'),
     url(r'^newtask/$', views.TaskCreateView.as_view(), name = 'create-task'),
+    url(r'^deletetask/(?P<pk>\d+)$', views.TaskDeleteView.as_view(), name = 'delete-task'),
+    url(r'^edittask/(?P<pk>\d+)$', views.TaskUpdateView.as_view(), name = 'edit-task'),
 
     #url(r'^(?P<pk>\d+)/$', views.CourseDetailView.as_view(), name = 'course'),
     #Урлы для редактирование курса

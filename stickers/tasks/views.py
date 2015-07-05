@@ -49,8 +49,36 @@ class TaskCreateView(CreateView):
 
     def form_valid(self, form):
         self.application = form.save()
-        messages.success(self.request, u'Напоминалка созданна. Добавь сколько хочешь задач на нее!')
+        messages.success(self.request, u'Напоминалка {} созданна. Добавь сколько хочешь задач на нее!'.format(self.application.title))
         return super(TaskCreateView, self).form_valid(form)
 
 
+#Delete current sticker
+class TaskDeleteView(DeleteView):
+    model = Task
+    success_url = reverse_lazy('tasks:tasks-list')
 
+    def delete(self, request, *args, **kwargs):
+        task = super (TaskDeleteView, self).delete(request, *args, **kwargs)
+        messages.success(self.request, u'Напоминалка {} удалена'.format(self.object.title))
+        return task
+
+
+#Update current sticker
+class TaskUpdateView(UpdateView):
+    model = Task
+    fields = ['title', 'theme', 'impotent', 'time_finish']
+
+    def get_success_url(self):
+        return reverse_lazy('tasks:task-detail', kwargs={'pk':self.kwargs['pk']})
+
+    def form_valid(self, form):
+        self.application = form.save()
+        messages.success(self.request, u'Напоминалка {} изменены'.format(self.application.title))
+        return super(TaskUpdateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(TaskUpdateView, self).get_context_data(**kwargs)
+        context['page_title'] = u"Редактирование напоминалки"
+        #context['username'] = auth.get_user(self.request).username
+        return context
