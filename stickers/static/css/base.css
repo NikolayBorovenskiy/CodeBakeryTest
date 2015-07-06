@@ -1,6 +1,6 @@
 .logo{
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     padding: 0px;
     margin:-34px 0px 0px 0px;
 }
@@ -15,8 +15,10 @@
 
 .custom-footer{
     background-color: #FF9900;
-    color: #333333;
+    color: #FFF;
     border: 2px solid #fff;
+    text-shadow:none;
+    height: 70px;
 
 }
 .row-wrapper{

@@ -35,6 +35,11 @@ a:hover{
     color: #333333;
 }
 
+.thumbnail:hover{
+    box-shadow: 0px 1px 30px #FFCC00;
+    border: 1px solid #111;
+}
+
 .theme p{
     text-transform: uppercase;
     color: #009999;
@@ -42,4 +47,9 @@ a:hover{
     padding-left: 60%;
 }
 
+.points p{
+    font-size: 20px;
+    color: #993333;
+    font-weight: bold;
 
+}

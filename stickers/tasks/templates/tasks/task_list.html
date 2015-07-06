@@ -31,8 +31,18 @@
             </div>
             <h3>{{ task.title }}</h3>
             {% for taskitem in task.taskitem_set.all %}
-              <p>{{ taskitem.discription }}</p>
+              {% if forloop.counter <= 5 %}
+                {% if  taskitem.status %}
+                  <p><span class="glyphicon glyphicon-ok" aria-hidden="true" title="Готово"></span>
+                {% endif %}
+                {{ taskitem.discription }}</p>
+              {% endif %}
             {% endfor %}
+            {% if task.taskitem_set.all|length > 5 %}
+              <div class="row points">
+                <p>...</p>
+              </div>
+            {% endif %}
             <div class="row theme">
               <p>{{ task.theme }}</p>
             </div>

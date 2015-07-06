@@ -17,6 +17,7 @@ class TaskListView(ListView):
         context = super(TaskListView, self).get_context_data(**kwargs)
         tasks = Task.objects.all()
         context['tasks'] = tasks
+        context['show_items'] = [xrange(4)]
         #context['username'] = auth.get_user(self.request).username
         return context
 

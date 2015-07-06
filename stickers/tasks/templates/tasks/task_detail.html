@@ -43,6 +43,11 @@
                     {{ forloop.counter }}
                   </td>
                   <td>
+                      {% if  taskite.status %}
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true" title="Готово"></span>
+                      {% endif %}
+                  </td>
+                  <td>
                     <a href="{% url 'tasks:edit-item' taskite.id %}" title="Изменить">
                         {{ taskite.discription }}
                     </a>
