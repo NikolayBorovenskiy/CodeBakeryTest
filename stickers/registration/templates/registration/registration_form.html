@@ -1,0 +1,43 @@
+{% extends "registration/registration_base.html" %}
+
+{% load i18n %}
+
+{% load static from staticfiles %}
+
+{% block title %}Регистрация{% endblock %}
+
+
+{% block custom_css %}
+    <link href="{% static "css/form.css" %}" rel="stylesheet">
+{% endblock custom_css %}
+
+
+{% block main_content %}
+<h1>Регистрация</h1>
+<form method="post" action="">
+    {% csrf_token %}
+    <dl class="register">
+    {% for field in form %}
+        <dt>{{ field.label_tag }}</dt>
+        <dd class="clearfix clearfix-custom">{{ field }}
+        {% if field.help_text %}<div class="clearfix clearfix-custom-help">{{ field.help_text }}</div>{% endif %}
+        {% if field.errors %}<div class="myerrors clearfix clearfix-custom-errors">{{ field.errors }}</div>{% endif %}
+        </dd>
+    {% endfor %}
+    </dl>
+    <input class="custom-button" type="submit" value="Зарегистрироваться" / class="clearfix">
+</form>
+{% endblock %}
+
+
+{% comment %}
+**registration/registration_form.html**
+Used to show the form users will fill out to register. By default, has
+the following context:
+
+``form``
+    The registration form. This will be an instance of some subclass
+    of ``django.forms.Form``; consult `Django's forms documentation
+    <http://docs.djangoproject.com/en/dev/topics/forms/>`_ for
+    information on how to display this in a template.
+{% endcomment %}

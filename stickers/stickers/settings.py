@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for stickers project.
 
@@ -40,12 +41,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tasks',
+    'registration',
+    'customuseradmin',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -92,3 +95,12 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+#Отправка писем для подтверждения регистрации на сайте
+ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
+#Send email with service send grid
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'NikolayB'
+EMAIL_HOST_PASSWORD = 'acmilan86'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

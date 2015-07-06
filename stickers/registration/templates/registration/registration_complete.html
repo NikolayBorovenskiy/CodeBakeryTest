@@ -1,0 +1,16 @@
+{% extends "base.html"  %}
+{% block main_content %}
+<h1>Регистрация завершена</h1>
+<p>Спасибо за уделённое время. На ваш e-mail отправлен
+код подтверждения. Необходимо подтвердить регистрацию,
+просто кликнув по указанной ссылке.</p><br/><br/>
+{% endblock %}
+
+{% comment %}
+**registration/registration_complete.html**
+
+Used after successful completion of the registration form. This
+template has no context variables of its own, and should simply inform
+the user that an email containing account-activation information has
+been sent.
+{% endcomment %}

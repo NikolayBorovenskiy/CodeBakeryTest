@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.show_index, name = 'index'),
     url(r'^desktop/', include('tasks.urls', namespace = "tasks")),
+    url(r'^accounts/', include('registration.urls')),
+    url(r'^accounts/', include('tasks.urls')),
 ]

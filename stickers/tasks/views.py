@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib import auth
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -18,7 +19,7 @@ class TaskListView(ListView):
         tasks = Task.objects.all()
         context['tasks'] = tasks
         context['show_items'] = [xrange(4)]
-        #context['username'] = auth.get_user(self.request).username
+        context['username'] = auth.get_user(self.request).username
         return context
 
 
