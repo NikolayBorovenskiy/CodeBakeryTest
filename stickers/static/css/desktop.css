@@ -53,3 +53,15 @@ a:hover{
     font-weight: bold;
 
 }
+
+.empty-box p{
+    color: #333;
+    font-size: 16px;
+
+}
+
+.empty-box h4{
+    color: #FFCC00;
+    font-size: 20px;
+    font-weight: bold;
+}

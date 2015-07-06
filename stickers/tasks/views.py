@@ -18,7 +18,6 @@ class TaskListView(ListView):
         context = super(TaskListView, self).get_context_data(**kwargs)
         tasks = Task.objects.all()
         context['tasks'] = tasks
-        context['show_items'] = [xrange(4)]
         context['username'] = auth.get_user(self.request).username
         return context
 
@@ -31,21 +30,27 @@ class TaskDetailView(DetailView):
         context = super(TaskDetailView, self).get_context_data(**kwargs)
         task = get_object_or_404(Task, pk = self.kwargs['pk'])
         context['task'] = task
+        context['username'] = auth.get_user(self.request).username
         return context
 
 #Create new sticker
 class TaskCreateView(CreateView):
     model = Task
     success_url = reverse_lazy('tasks:tasks-list')
-    fields = ['title', 'theme', 'impotent', 'time_finish']
+    fields = ['title', 'theme', 'user' ,'impotent', 'time_finish']
 
     def get_initial(self):
-        return {'theme': u'разное',}
+        context = {}
+        context['theme'] = u'разное'
+
+        context['user'] = auth.get_user(self.request).id
+        return context
 
     def get_context_data(self, **kwargs):
         context = super(TaskCreateView, self).get_context_data(**kwargs)
         context['page_title'] = u"Создать напоминалку"
-        #context['username'] = auth.get_user(self.request).username
+        context['username'] = auth.get_user(self.request).username
+        print type(auth.get_user(self.request).id)
         return context
 
     def form_valid(self, form):
@@ -64,6 +69,11 @@ class TaskDeleteView(DeleteView):
         messages.success(self.request, u'Напоминалка {} удалена'.format(self.object.title))
         return task
 
+    def get_context_data(self, **kwargs):
+        context = {}
+        context['username'] = auth.get_user(self.request).username
+        return context
+
 
 #Update current sticker
 class TaskUpdateView(UpdateView):
@@ -81,7 +91,7 @@ class TaskUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(TaskUpdateView, self).get_context_data(**kwargs)
         context['page_title'] = u"Редактирование напоминалки"
-        #context['username'] = auth.get_user(self.request).username
+        context['username'] = auth.get_user(self.request).username
         return context
 
 
@@ -92,6 +102,7 @@ class TaskItemCreateView(CreateView):
     fields = ['discription', 'status', 'commontask']
 
     def get_initial(self):
+        print self.kwargs['pk']
         return {'commontask': self.kwargs['pk'],}
 
     def get_success_url(self):
@@ -100,7 +111,7 @@ class TaskItemCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(TaskItemCreateView, self).get_context_data(**kwargs)
         context['page_title'] = u"Создать задачу"
-        #context['username'] = auth.get_user(self.request).username
+        context['username'] = auth.get_user(self.request).username
         return context
 
     def form_valid(self, form):
@@ -130,7 +141,7 @@ class TaskItemUpdateView(UpdateView):
         context['page_title'] = u"Редактирование задачи"
         #taskitem = get_object_or_404(TaskItem, id = self.kwargs['id'])
         #context['taskitem'] = taskitem
-        #context['username'] = auth.get_user(self.request).username
+        context['username'] = auth.get_user(self.request).username
         return context
 
 
@@ -141,6 +152,10 @@ class TaskItemDeleteView(DeleteView):
     def get_success_url(self):
         taskitem = get_object_or_404(TaskItem, id = self.kwargs['pk'])
         return reverse_lazy('tasks:task-detail', kwargs={'pk':taskitem.commontask.id})
+
+    def get_context_data(self, **kwargs):
+        context['username'] = auth.get_user(self.request).username
+        return context
 
     def delete(self, request, *args, **kwargs):
         taskitem = super (TaskItemDeleteView, self).delete(request, *args, **kwargs)

@@ -3,7 +3,7 @@ from django.conf.urls import patterns, url
 from tasks import views
 
 urlpatterns = [
-    url(r'^profile/$', views.TaskListView.as_view(), name = 'tasks-list'),
+    url(r'^$', views.TaskListView.as_view(), name = 'tasks-list'),
     url(r'^(?P<pk>\d+)$', views.TaskDetailView.as_view(), name = 'task-detail'),
     url(r'^newtask/$', views.TaskCreateView.as_view(), name = 'create-task'),
     url(r'^deletetask/(?P<pk>\d+)$', views.TaskDeleteView.as_view(), name = 'delete-task'),

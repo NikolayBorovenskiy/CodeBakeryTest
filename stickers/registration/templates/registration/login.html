@@ -5,6 +5,8 @@
     <link href="{% static "css/form.css" %}" rel="stylesheet">
 {% endblock custom_css %}
 
+{% block nav_class_sign_in %}active{% endblock %}
+
 
 {% block main_content %}
 <h1>Авторизация</h1>
@@ -37,10 +39,12 @@ document.getElementById('id_username').focus()
 </script>
 
  <br/><br/>
+<!--
 <ul>
     <li><a href="{% url 'auth_password_reset' %}">Забыли пароль?</a></li>
     <li><a href="{% url 'registration_register' %}">Регистрация</a></li>
 </ul>
+-->
 {% endif %}
 {% endblock %}
 

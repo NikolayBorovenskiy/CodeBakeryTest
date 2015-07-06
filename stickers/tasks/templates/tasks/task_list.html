@@ -15,7 +15,7 @@
 {% include "inc_message.html" %}
 <div class="row">
   <div class="row ">
-    {% for task in tasks %}
+    {% for task in user.task_set.all %}
       <a href="{% url 'tasks:task-detail' task.id %}">
         <div class="thumbnail thumbnail-custom">
           <div class="caption">
@@ -70,6 +70,12 @@
           </div>
         </div>
       </a>
+    {% empty %}
+      <div class="empty-box">
+        <h4>Привет, {{ username }}!</h4>
+        <p>Ни одной напоминалки пока не созданно :(</p>
+        <p>Можешь сделать это прямо сейчас!</p>
+      </div>
     {% endfor %}
   </div>
   <!--Кнопка добавить новый стикер-->

@@ -44,21 +44,29 @@
 
             <div class="masthead clearfix custom">
               <div class="inner">
-
-                <a href="/"><img class="logo masthead-brand" src="{% static 'images/logo.gif' %}" title='Hello! I am Mr. Pencil'></a>
-                <nav>
-                  <ul class="nav masthead-nav">
-                  <!--
-                    <li class="{% block nav_class_desktop %}{% endblock %}"><a href="{% url 'tasks-list' %}" title="Рабочий стол">Рабочий стол</a></li>-->
-                    {% if username %}
-                      <li class="{% block nav_class_sign_out %}{% endblock %}"><a href="{% url 'auth_logout' %}" title="Выйти">Sign out</a></li>
-                      {{ username }}
-                    {% else %}
-                      <li class="{% block nav_class_sign_up %}{% endblock %}"><a href="{% url 'registration_register' %}" title="Зарегистрироваться">Sign Up</a></li>
-                      <li class="{% block nav_class_sign_in %}{% endblock %}"><a href="{% url 'auth_login' %}" title="Войти">Sign In</a></li>
-                    {% endif %}
-                  </ul>
-                </nav>
+                <div class="row">
+                  <div class="col-sm-12 col-md-2">
+                    <a href="{% url 'auth_logout' %}"><img class="logo masthead-brand" src="{% static 'images/logo.gif' %}" title='Привет! Mr. Pencil - это я!'></a>
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <h3>{{ username }}</h3>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <nav>
+                      <ul class="nav masthead-nav">
+                        {% if username %}
+                          <li class="{% block nav_class_desktop %}{% endblock %}"><a href="{% url 'tasks:tasks-list' %}" title="Рабочий стол">Рабочий стол</a></li>
+                        {% endif %}
+                        {% if username %}
+                          <li class="{% block nav_class_sign_out %}{% endblock %}"><a href="{% url 'auth_logout' %}" title="Выйти">Выйти</a></li>
+                        {% else %}
+                          <li class="{% block nav_class_sign_up %}{% endblock %}"><a href="{% url 'registration_register' %}" title="Зарегистрироваться">Регистрация</a></li>
+                          <li class="{% block nav_class_sign_in %}{% endblock %}"><a href="{% url 'auth_login' %}" title="Войти">Войти</a></li>
+                        {% endif %}
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
               </div>
             </div>
           <div class="row row-wrapper">

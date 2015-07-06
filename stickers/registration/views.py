@@ -4,6 +4,7 @@ Views which allow users to create and activate accounts.
 """
 
 from django.shortcuts import redirect
+from django.contrib import auth
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.conf import settings
@@ -137,6 +138,12 @@ class ActivationView(TemplateView):
                 return redirect(success_url)
         return super(ActivationView, self).get(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = {}
+        context['username'] = auth.get_user(self.request).username
+        return context
+
+
     def activate(self, request, *args, **kwargs):
         """
         Implement account-activation logic here.
@@ -145,4 +152,5 @@ class ActivationView(TemplateView):
         raise NotImplementedError
 
     def get_success_url(self, request, user):
+
         raise NotImplementedError

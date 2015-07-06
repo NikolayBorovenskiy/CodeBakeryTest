@@ -16,10 +16,20 @@
   <h3> {{ page_title }} </h3><br>
 
     <!--Создание формы для новой задачи-->
-    <form class ="custome" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input id="custom_btn" class="btn btn-primary"  type='submit' value="cохранить">
-    </form>
+    <form method="post" action="">
+    {% csrf_token %}
+    <dl class="register">
+    {% for field in form %}
+
+            <dt>{{ field.label_tag }}</dt>
+            <dd class="clearfix clearfix-custom">{{ field }}
+            {% if field.help_text %}<div class="clearfix clearfix-custom-help">{{ field.help_text }}</div>{% endif %}
+            {% if field.errors %}<div class="myerrors clearfix clearfix-custom-errors">{{ field.errors }}</div>{% endif %}
+            </dd>
+
+    {% endfor %}
+    </dl>
+    <input class="custom-button" type="submit" value="сохранить" / class="clearfix">
+</form>
 
 {% endblock main_content %}
