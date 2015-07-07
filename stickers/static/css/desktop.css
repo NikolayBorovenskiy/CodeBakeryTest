@@ -3,6 +3,11 @@ body{
 
 }
 
+.empty-box h4{
+    text-shadow: none;
+}
+
+
 .thumbnail{
     display: inline-block;
     background-color: #FFCC00;

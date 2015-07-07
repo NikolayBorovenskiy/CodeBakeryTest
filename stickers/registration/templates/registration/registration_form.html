@@ -28,6 +28,11 @@
     </dl>
     <input class="custom-button" type="submit" value="Зарегистрироваться" / class="clearfix">
 </form>
+<br><br>
+<ul>
+    <lo><p><a href="{% url 'socialauth_begin' 'google-oauth2' %}">Регистрация через Ваш аккаунт Google</a></p></lo>
+    <lo><p><a href="{% url 'socialauth_begin' 'facebook' %}">Регистрация через Ваш аккаунт Facebook</a></p></lo>
+</ul>
 {% endblock %}
 
 

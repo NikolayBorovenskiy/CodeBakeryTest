@@ -11,4 +11,5 @@ urlpatterns = [
     #url(r'^desktop/', include('tasks.urls', namespace = "tasks")),
     url(r'^accounts/', include('registration.urls')),
     url(r'^accounts/profile/', include('tasks.urls', namespace = "tasks")),
+    url(r'', include('social_auth.urls')),
 ]

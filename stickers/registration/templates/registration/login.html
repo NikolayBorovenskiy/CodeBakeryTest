@@ -45,6 +45,10 @@ document.getElementById('id_username').focus()
     <li><a href="{% url 'registration_register' %}">Регистрация</a></li>
 </ul>
 -->
+<ul>
+    <lo><p><a href="{% url 'socialauth_begin' 'google-oauth2' %}">Войти через Ваш аккаунт Google</a></p></lo>
+    <lo><a href="{% url 'socialauth_begin' 'facebook' %}">Войти через Ваш аккаунт Facebook</a></lo>
+</ul>
 {% endif %}
 {% endblock %}
 

@@ -43,6 +43,21 @@ INSTALLED_APPS = (
     'tasks',
     'registration',
     'customuseradmin',
+    'social_auth',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+    'social_auth.context_processors.social_auth_by_name_backends',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,6 +70,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
+
+GOOGLE_OAUTH2_CLIENT_ID = '967560025228-83gnsnpcv5r91ts427vanpipifeisccr.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET = '5PMndZPRNF5bjmYVMeu4x180'
+
+
+FACEBOOK_APP_ID = '937590722980451'
+FACEBOOK_API_SECRET = '27188c1a90b35dce7fa0f8e059aa9487'
 
 ROOT_URLCONF = 'stickers.urls'
 
@@ -97,7 +119,12 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 #Отправка писем для подтверждения регистрации на сайте
-ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
+ACCOUNT_ACTIVATION_DAYS = 3 # кол-во дней для хранения кода активации
+
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
+
 #Send email with service send grid
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'NikolayB'
