@@ -13,19 +13,29 @@
 {% block main_content %}
 {% include "inc_message.html" %}
     <div class="row settings">
-        <div class="col-sm-12 col-md-3">
+        <div class="col-sm-12 col-md-2">
            <span class="glyphicon glyphicon-calendar" aria-hidden="true" title="Дата создания"></span>
            {{ task.time_public|date:"d m Y" }}
         </div>
-        <div class="col-sm-12 col-md-3">
+        <div class="col-sm-12 col-md-2">
             {{ task.theme }}
         </div>
-        <div class="col-sm-12 col-md-3">
+        <div class="col-sm-12 col-md-2">
             {% if  task.impotent %}
               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" title="Важное"></span>
             {% endif %}
         </div>
-        <div class="col-sm-12 col-md-3">
+        <div class="col-sm-12 col-md-2">
+          {% if  task.not_done == 'all done' %}
+            <span  class="glyphicon glyphicon-ok" aria-hidden="true" title="Все задания выполнены!"></span>
+          {% endif %}
+        </div>
+        <div class="col-sm-12 col-md-2">
+          {% if  task.fire %}
+            <span  class="glyphicon glyphicon-fire" aria-hidden="true" title="Горящая напоминалка"></span>
+          {% endif %}
+        </div>
+        <div class="col-sm-12 col-md-2">
           <span class="glyphicon glyphicon-bell" aria-hidden="true" title="Deadline"></span>
           {{ task.time_finish|date:"d m Y" }}
         </div>
@@ -58,6 +68,9 @@
                     </a>
                   </td>
                 </tr>
+              {% empty %}
+                <p>Нет ни одной задачи.</p>
+                <p>Вы можете здесь составить список из своих задач.</p>
               {% endfor %}
             </tbody>
           </table>
