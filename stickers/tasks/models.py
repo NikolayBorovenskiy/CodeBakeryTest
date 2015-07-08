@@ -27,6 +27,7 @@ class Task (models.Model):
                 self.done_status = 'undone'
         return self.done_status
 
+
     #fire stikers
     def fire(self):
         if self.time_finish is not None:

@@ -2,6 +2,7 @@ body{
     background-image: url('http://2.bp.blogspot.com/-kVXStXiQSjA/UTNCUlt2W3I/AAAAAAAAUhY/rdJP79M9dU0/s1600/wood+backgrounds+(57).jpg');
     background-color: #444444;
     height: 700px;
+    font-family: comic, tahoma, arial,
 }
 
 .custom-div{
@@ -15,7 +16,7 @@ body{
     border-radius: 10%;
     width: 500px;
     background-color: #444777;
-    text-shadow:2px 2px 0px #333;
+    text-shadow:1px 1px 0px #333, -1px -1px 0px #333;
 
 }
 

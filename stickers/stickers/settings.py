@@ -49,6 +49,7 @@ INSTALLED_APPS = (
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.google.GoogleOAuth2Backend',
     'social_auth.backends.facebook.FacebookBackend',
+    'stickers.email-auth.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
