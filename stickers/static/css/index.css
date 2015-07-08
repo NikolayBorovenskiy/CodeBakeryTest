@@ -23,3 +23,7 @@ body{
 .custom-div h1{
     color:#FFCC00;
 }
+
+.custom-div a:hover{
+    background: #CCFF99;
+}
