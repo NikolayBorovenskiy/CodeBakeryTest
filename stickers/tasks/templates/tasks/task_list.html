@@ -13,70 +13,105 @@
 
 {% block main_content %}
 {% include "inc_message.html" %}
+  <!--Фильтрация выборки студентов-->
+<div class='row filter'>
+  <form action="" method="get">
+    {% csrf_token %}
+    <div class="container-filter custom-filter">
+      <input type = "checkbox" name = "Impotent"  value=True /> Важные
+      <select id="id_theme" name="theme">
+          <option value=5>все</option>
+          <option value=0>работа</option>
+          <option value=1>личное</option>
+          <option value=2>семья</option>
+          <option value=3>покупки</option>
+          <option value=4>разное</option>
+      </select> Тема
+      <input type = "checkbox" name = "Urgent"  value=True /> По дате выполнения
+    </div>
+    <div class="container-filter">
+      <button type="submit" class="btn btn-primary btn-sm" aria-label="Left Align">Показать
+      </button>
+    </div>
+  </form>
+</div>
 <div class="row">
   <div class="row ">
-    {% for task in user.task_set.all %}
-      <a href="{% url 'tasks:task-detail' task.id %}">
-        <div class="thumbnail thumbnail-custom">
-          <div class="caption">
-            <div class="row">
-              <div class="col-sm-12 col-md-6">
-                {{ task.time_public|date:"d m Y" }}
-              </div>
-              <div class="col-sm-12 col-md-6">
-                {% if  task.impotent %}
-                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" title="Важное"></span>
+      {% for task in tasks %}
+        {% if task in user.task_set.all %}
+          <a href="{% url 'tasks:task-detail' task.id %}">
+            <div class="thumbnail thumbnail-custom">
+              <div class="caption">
+                <div class="row">
+                  <div class="col-sm-12 col-md-6">
+                    {{ task.time_public|date:"d m Y" }}
+                  </div>
+                  <div class="col-sm-12 col-md-2">
+                    {% if  task.fire %}
+                      <span  class="glyphicon glyphicon-fire" aria-hidden="true" title="Горящая напоминалка"></span>
+                    {% endif %}
+                  </div>
+                  <div class="col-sm-12 col-md-2">
+                    {% if  task.not_done == 'all done' %}
+                      <span  class="glyphicon glyphicon-ok" aria-hidden="true" title="Все задания выполнены!"></span>
+                    {% endif %}
+                  </div>
+                  <div class="col-sm-12 col-md-2">
+                    {% if  task.impotent %}
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" title="Важное"></span>
+                    {% endif %}
+                  </div>
+                </div>
+                <h3>{{ task.title }}</h3>
+                {% for taskitem in task.taskitem_set.all %}
+                  {% if forloop.counter <= 5 %}
+                    {% if  taskitem.status %}
+                      <p><span class="glyphicon glyphicon-ok" aria-hidden="true" title="Готово"></span>
+                    {% endif %}
+                    {{ taskitem.discription }}</p>
+                  {% endif %}
+                {% endfor %}
+                {% if task.taskitem_set.all|length > 5 %}
+                  <div class="row points">
+                    <p>...</p>
+                  </div>
                 {% endif %}
-              </div>
-            </div>
-            <h3>{{ task.title }}</h3>
-            {% for taskitem in task.taskitem_set.all %}
-              {% if forloop.counter <= 5 %}
-                {% if  taskitem.status %}
-                  <p><span class="glyphicon glyphicon-ok" aria-hidden="true" title="Готово"></span>
-                {% endif %}
-                {{ taskitem.discription }}</p>
-              {% endif %}
-            {% endfor %}
-            {% if task.taskitem_set.all|length > 5 %}
-              <div class="row points">
-                <p>...</p>
-              </div>
-            {% endif %}
-            <div class="row theme">
-              <p>{{ task.theme }}</p>
-            </div>
-            <div class="row">
-              <div class="col-sm-12 col-md-6">
-                {% if  task.time_finish %}
-                  <span class="glyphicon glyphicon-bell" aria-hidden="true" title="Deadline"></span>
-                  {{ task.time_finish|date:"d m Y" }}
-                {% endif %}
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <div class="btn-group btn-group-custom" role="group" aria-label="...">
-                  <a class="btn btn-default btn-xs" href="{{ task.id }}/newitem/" title="Добавить задачу">
-                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                  </a>
-                  <a class="btn btn-default btn-xs" href="{% url 'tasks:edit-task' task.id %}" title="Изменить">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                  </a>
-                  <a class="btn btn-default btn-xs" href="{% url 'tasks:delete-task' task.id %}" title="Удалить напоминалку">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </a>
+                <div class="row theme">
+                  <p>{{ task.theme }}</p>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-6">
+                    {% if  task.time_finish %}
+                      <span class="glyphicon glyphicon-bell" aria-hidden="true" title="Deadline"></span>
+                      {{ task.time_finish|date:"d m Y" }}
+                    {% endif %}
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <div class="btn-group btn-group-custom" role="group" aria-label="...">
+                      <a class="btn btn-default btn-xs" href="{{ task.id }}/newitem/" title="Добавить задачу">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                      </a>
+                      <a class="btn btn-default btn-xs" href="{% url 'tasks:edit-task' task.id %}" title="Изменить">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                      </a>
+                      <a class="btn btn-default btn-xs" href="{% url 'tasks:delete-task' task.id %}" title="Удалить напоминалку">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+        {% endif %}
+      {% empty %}
+        <div class="empty-box">
+          <h4>Привет, {{ username }}!</h4>
+          <p>Ни одной напоминалки пока не созданно :(</p>
+          <p>Можешь сделать это прямо сейчас!</p>
         </div>
-      </a>
-    {% empty %}
-      <div class="empty-box">
-        <h4>Привет, {{ username }}!</h4>
-        <p>Ни одной напоминалки пока не созданно :(</p>
-        <p>Можешь сделать это прямо сейчас!</p>
-      </div>
-    {% endfor %}
+      {% endfor %}
+
   </div>
   <!--Кнопка добавить новый стикер-->
   <div class="row">

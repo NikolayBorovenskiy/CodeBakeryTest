@@ -1,10 +1,10 @@
 #-*- coding: utf-8 -*-
 import datetime
 
+from datetime import date
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
-#from clients.models import Coach
 
 
 class Task (models.Model):
@@ -16,8 +16,25 @@ class Task (models.Model):
     time_public = models.DateTimeField(verbose_name=u'Время создания', editable=True, auto_now_add=True)
     time_finish = models.DateField(blank=True, null=True, verbose_name=u'Срок выполнения', help_text='например, 09.07.2015')
 
-    class Meta:
-        ordering = ['-time_public']
+
+    #Define stickers, which not done
+    def not_done(self):
+        self.done_status = 'not items'
+        if len(self.taskitem_set.all()) != 0:
+            if len(self.taskitem_set.all()) == len(self.taskitem_set.all().filter(status=True)):
+                self.done_status = 'all done'
+            else:
+                self.done_status = 'undone'
+        return self.done_status
+
+    #fire stikers
+    def fire(self):
+        if self.time_finish is not None:
+            if self.time_finish <= date.today() and self.not_done() is 'undone':
+                return True
+            else:
+                return False
+        return False
 
     def __unicode__(self):
         return self.title

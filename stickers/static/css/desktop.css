@@ -70,3 +70,39 @@ a:hover{
     font-size: 20px;
     font-weight: bold;
 }
+
+.glyphicon-ok{
+    color: #009900;
+}
+
+.glyphicon-fire{
+    color: #FF3300;
+}
+
+form{
+    color: #000;
+}
+
+.container-filter{
+    display: inline-block;
+}
+
+.container-filter input, select, button{
+    margin-left: 40px;
+    margin-right: 5px;
+}
+
+.filter{
+    margin-bottom: 30px;
+    background-color: #FFFFCC;
+    border: 1px solid #999999;
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.site-wrapper-inner {
+    margin-top: 8%;
+}

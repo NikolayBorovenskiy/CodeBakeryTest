@@ -73,8 +73,11 @@ class RegistrationView(_RequestPassingFormView):
     """
     disallowed_url = 'registration_disallowed'
     form_class = REGISTRATION_FORM
+
     http_method_names = ['get', 'post', 'head', 'options', 'trace']
     success_url = None
+    #fields = ["first_name", "last_name", "username", "email", "password1", "password2",]
+
     template_name = 'registration/registration_form.html'
 
     @method_decorator(sensitive_post_parameters('password1', 'password2'))

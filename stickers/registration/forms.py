@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Forms and validation code for user registration.
 
@@ -33,11 +34,13 @@ class RegistrationForm(UserCreationForm):
 
     """
     required_css_class = 'required'
-    email = forms.EmailField(label=_("E-mail"))
+    email = forms.EmailField(label=_("E-mail"), required=True)
+    username = forms.CharField(max_length=30, label=_("Логин"), required=True, help_text='Не вводить кирилические символы')
+
 
     class Meta:
         model = User
-        fields = (UsernameField(), "email")
+        fields = ("username", "email", )
 
 
 class RegistrationFormTermsOfService(RegistrationForm):

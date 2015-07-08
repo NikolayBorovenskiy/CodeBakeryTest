@@ -16,9 +16,28 @@ class TaskListView(ListView):
     #paginate_by = 8
     def get_context_data(self, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
-        tasks = Task.objects.all()
-        context['tasks'] = tasks
         context['username'] = auth.get_user(self.request).username
+        tasks = Task.objects.order_by('time_finish').filter(theme__in = ['семья', 'разное']).filter(impotent = True)
+        self.paramets = dict(self.request.GET)
+        self.urgent = '-time_public'
+        self.theme = ['работа', 'личное', 'семья', 'покупки', 'разное']
+
+        if len(self.request.GET):
+            if self.paramets.has_key('Urgent'):
+                self.urgent = 'time_finish'
+            if self.paramets.has_key('theme'):
+                if int(self.paramets['theme'][0]) is not 5:
+                    self.theme = [self.theme[int(self.paramets['theme'][0])]]
+            if self.paramets.has_key('Impotent'):
+
+                tasks = Task.objects.order_by(self.urgent).filter(theme__in = self.theme).filter(impotent = True)
+                context['tasks'] = tasks
+                print self.urgent, self.theme
+                return context
+        print self.urgent, self.theme
+        tasks = Task.objects.order_by(self.urgent).filter(theme__in = self.theme)
+        context['tasks'] = tasks
+
         return context
 
 
