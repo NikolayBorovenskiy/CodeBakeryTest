@@ -6,18 +6,18 @@ body{
 }
 
 .custom-div{
-    background-image: url(https://photos-1.dropbox.com/t/2/AAB0rJ3V0IjO5PgRvk2uHVO9CVDjVshjGtS8jk-KhX0RXw/12/420186712/jpeg/32x32/1/_/1/2/pencils.jpg/CNiUrsgBIAEgAiADIAQgBSAGIAcoAg/HU26dgK6Mzp2E7inqknQHtx0MS68zvvXIhkehG3S7rM?size=1024x768&size_mode=2);
+    background-image: url(https://photos-5.dropbox.com/t/2/AAAOFsneRjz7NdHlXBaT72tyCwfl5Zws20hm2ywkh2gAfw/12/420186712/jpeg/32x32/1/_/1/2/background.jpg/EOP8tK8DGDggAigC/8XUpFSHHnMTfIaQpycX5sCrAr9dtCfFspo_uja9-mTQ?size=800x600&size_mode=2);
     background-size: 105%;
     background-position: center;
     margin-top: 12%;
     margin-bottom: 4%;
     margin-left: 40%;
-    border: 1px solid #FFF;
+    border: 2px solid #333;
     border-radius: 10%;
     width: 500px;
     background-color: #444777;
-    text-shadow:1px 1px 0px #333, -1px -1px 0px #333;
-
+    text-shadow:1px 1px 3px #000;
+    color: #333333;
 }
 
 .custom-div h1{
@@ -26,4 +26,8 @@ body{
 
 .custom-div a:hover{
     background: #CCFF99;
+}
+
+.custom-div a{
+    background: #FFCC66;
 }

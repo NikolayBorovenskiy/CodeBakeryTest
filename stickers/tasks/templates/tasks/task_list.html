@@ -120,14 +120,13 @@
             </div>
           </a>
         {% endif %}
-      {% empty %}
-        <div class="empty-box">
-          <h4>Привет, {{ username }}!</h4>
-          <p>Здесь нет ни каких напоминалок :-(</p>
-
-        </div>
       {% endfor %}
-
+      {% if user.task_set.all|length == 0 %}
+        <div class="empty-box">
+          <br><br><br><br><br><br>
+          <p>Пока нет никаких напоминалок :-(</p>
+        </div>
+      {% endif %}
   </div>
   <!--Кнопка добавить новый стикер-->
 </div>
