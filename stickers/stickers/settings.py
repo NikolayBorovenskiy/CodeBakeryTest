@@ -58,7 +58,7 @@ AUTHENTICATION_BACKENDS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
-    'social_auth.context_processors.social_auth_by_name_backends',
+  #  'social_auth.context_processors.social_auth_by_name_backends',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,8 +127,15 @@ LOGIN_REDIRECT_URL = '/accounts/profile/'
 SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
 
 #Send email with service send grid
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'NikolayB'
+#EMAIL_HOST = 'smtp.sendgrid.net'
+#EMAIL_HOST_USER = 'NikolayB'
+#EMAIL_HOST_PASSWORD = 'acmilan86'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'nikolay.borovenskiy@gmail.com'
 EMAIL_HOST_PASSWORD = 'acmilan86'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

@@ -1,20 +1,20 @@
 {% load i18n %}
 {% load url from future %}
 {% blocktrans with site_name=site.name %}
-Вы (или тот кто Вас знает) сделали запрос на регистрация аккаунта на
-{{ site_name }}.  Если это были не Вы, то просто проигнорируйте это
-письмо или удалите эту запись.
+You (or someone pretending to be you) have asked to register an account at
+{{ site_name }}.  If this wasn't you, please ignore this email
+and your address will be removed from our records.
 {% endblocktrans %}
 {% blocktrans %}
-Для регистрации этого аккауната, просто кликните на ссылку, которая расположена ниже.
-{{ expiration_days }} Дней:
+To activate this account, please click the following link within the next
+{{ expiration_days }} days:
 {% endblocktrans %}
 
 http://{{site.domain}}{% url 'registration_activate' activation_key %}
 
 {% blocktrans with site_name=site.name %}
-С уважением,
-{{ site_name }} Николай Боровенский.
+Sincerely,
+{{ site_name }} Management
 {% endblocktrans %}
 
 

@@ -56,7 +56,7 @@
       {% for task in tasks %}
         {% if task in user.task_set.all %}
           <a href="{% url 'tasks:task-detail' task.id %}">
-            <div class="thumbnail thumbnail-custom">
+            <div class="thumbnail thumbnail-custom {{ task.color }}">
               <div class="caption">
                 <div class="row">
                   <div class="col-sm-12 col-md-6">

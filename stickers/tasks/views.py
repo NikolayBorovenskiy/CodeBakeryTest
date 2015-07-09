@@ -56,11 +56,12 @@ class TaskDetailView(DetailView):
 class TaskCreateView(CreateView):
     model = Task
     success_url = reverse_lazy('tasks:tasks-list')
-    fields = ['title', 'theme', 'user' ,'impotent', 'time_finish']
+    fields = ['title', 'theme', 'color', 'user' ,'impotent', 'time_finish']
 
     def get_initial(self):
         context = {}
         context['theme'] = u'разное'
+        context['color'] = 'yellow'
 
         context['user'] = auth.get_user(self.request).id
         return context
@@ -97,7 +98,7 @@ class TaskDeleteView(DeleteView):
 #Update current sticker
 class TaskUpdateView(UpdateView):
     model = Task
-    fields = ['title', 'theme', 'impotent', 'time_finish']
+    fields = ['title', 'theme', 'color', 'impotent', 'time_finish']
 
     def get_success_url(self):
         return reverse_lazy('tasks:task-detail', kwargs={'pk':self.kwargs['pk']})

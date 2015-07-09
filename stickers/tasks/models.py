@@ -11,6 +11,8 @@ class Task (models.Model):
     title = models.CharField(verbose_name=u'Заголовок', max_length=35, blank=True)
     theme = models.CharField(verbose_name=u'Тема', max_length=10, choices=((u'работа', u'работа'), (u'личное', u'личное'),
                             (u'семья', u'семья'), (u'покупки', u'покупки'), (u'разное', u'разное')), )
+    color = models.CharField(verbose_name=u'Цвет', max_length=10, choices=(('red', u'красный'), ('yellow', u'желтый'),
+                            ('blue', u'голубой'), ('grey', u'серый'), (u'viollent', u'фиолетовый')), )
     user = models.ForeignKey(User, verbose_name=u'Пользователь', null=True, editable=True)
     impotent = models.BooleanField(verbose_name=u'Важное')
     time_public = models.DateTimeField(verbose_name=u'Время создания', editable=True, auto_now_add=True)

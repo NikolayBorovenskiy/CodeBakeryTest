@@ -13,6 +13,21 @@ body{
     background-color: #FFCC00;
     position: relative;
 }
+.red{
+    background-color: #FF3333;
+}
+.yellow{
+    background-color: #FFCC00;
+}
+.blue{
+    background-color: #6699FF;
+}
+.grey{
+    background-color: #999999;
+}
+.viollent{
+    background-color: #CC66FF;
+}
 
 .btm-bottom{
     position: absolute;
@@ -48,6 +63,7 @@ a:hover{
 .theme p{
     text-transform: uppercase;
     color: #009999;
+    text-shadow: 0px 1px 0px #333;
     font-size: 12px;
     padding-left: 60%;
 }
