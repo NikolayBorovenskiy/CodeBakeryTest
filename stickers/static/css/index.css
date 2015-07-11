@@ -6,7 +6,7 @@ body{
 }
 
 .custom-div{
-    background-image: url(https://photos-5.dropbox.com/t/2/AAAOFsneRjz7NdHlXBaT72tyCwfl5Zws20hm2ywkh2gAfw/12/420186712/jpeg/32x32/1/_/1/2/background.jpg/EOP8tK8DGDggAigC/8XUpFSHHnMTfIaQpycX5sCrAr9dtCfFspo_uja9-mTQ?size=800x600&size_mode=2);
+    background-image: url('../images/background.jpg');
     background-size: 105%;
     background-position: center;
     margin-top: 12%;
