@@ -57,6 +57,14 @@ class TaskCreateView(CreateView):
     model = Task
     success_url = reverse_lazy('tasks:tasks-list')
     fields = ['title', 'theme', 'color', 'user' ,'impotent', 'time_finish']
+  
+
+
+    def get_form(self, form_class):
+        form = super(TaskCreateView, self).get_form(form_class)
+        form.fields['time_finish'].widget.attrs.update({'class': 'datepicker'})
+        form.fields['user']
+        return form
 
     def get_initial(self):
         context = {}
