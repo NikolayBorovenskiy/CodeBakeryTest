@@ -1,0 +1,6 @@
+# python precompiled files:
+*.pyc
+*.pyo
+*.txt~
+db.sqlite3
+.gitignore~
