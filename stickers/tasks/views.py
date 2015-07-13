@@ -10,13 +10,19 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from tasks.models import Task, TaskItem
 
 
+class MixinUserContext(object):
+    def get_context_data(self, **kwargs):
+        context = super(MixinUserContext, self).get_context_data(**kwargs)
+        context['username'] = auth.get_user(self.request).username
+        return context
+
 # Create task list
-class TaskListView(ListView):
+class TaskListView(MixinUserContext, ListView):
     model = Task
     #paginate_by = 8
     def get_context_data(self, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
-        context['username'] = auth.get_user(self.request).username
+        #context['username'] = auth.get_user(self.request).username
         tasks = Task.objects.order_by('time_finish').filter(theme__in = ['семья', 'разное']).filter(impotent = True)
         self.paramets = dict(self.request.GET)
         self.urgent = '-time_public'
@@ -42,18 +48,18 @@ class TaskListView(ListView):
 
 
 #Create detail info about task
-class TaskDetailView(DetailView):
+class TaskDetailView(MixinUserContext, DetailView):
     model = Task
 
     def get_context_data(self, **kwargs):
         context = super(TaskDetailView, self).get_context_data(**kwargs)
         task = get_object_or_404(Task, pk = self.kwargs['pk'])
         context['task'] = task
-        context['username'] = auth.get_user(self.request).username
+        #context['username'] = auth.get_user(self.request).username
         return context
 
 #Create new sticker
-class TaskCreateView(CreateView):
+class TaskCreateView(MixinUserContext, CreateView):
     model = Task
     success_url = reverse_lazy('tasks:tasks-list')
     fields = ['title', 'theme', 'color', 'user' ,'impotent', 'time_finish']
@@ -77,7 +83,7 @@ class TaskCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(TaskCreateView, self).get_context_data(**kwargs)
         context['page_title'] = u"Создать напоминалку"
-        context['username'] = auth.get_user(self.request).username
+        #context['username'] = auth.get_user(self.request).username
         print type(auth.get_user(self.request).id)
         return context
 
@@ -88,7 +94,7 @@ class TaskCreateView(CreateView):
 
 
 #Delete current sticker
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(MixinUserContext, DeleteView):
     model = Task
     success_url = reverse_lazy('tasks:tasks-list')
 
@@ -97,14 +103,9 @@ class TaskDeleteView(DeleteView):
         messages.success(self.request, u'Напоминалка {} удалена'.format(self.object.title))
         return task
 
-    def get_context_data(self, **kwargs):
-        context = {}
-        context['username'] = auth.get_user(self.request).username
-        return context
-
 
 #Update current sticker
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(MixinUserContext, UpdateView):
     model = Task
     fields = ['title', 'theme', 'color', 'impotent', 'time_finish']
 
@@ -119,12 +120,12 @@ class TaskUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(TaskUpdateView, self).get_context_data(**kwargs)
         context['page_title'] = u"Редактирование напоминалки"
-        context['username'] = auth.get_user(self.request).username
+        #context['username'] = auth.get_user(self.request).username
         return context
 
 
 #Create item of task
-class TaskItemCreateView(CreateView):
+class TaskItemCreateView(MixinUserContext, CreateView):
     model = TaskItem
     #success_url = reverse_lazy('tasks:tasks-list')
     fields = ['discription', 'status', 'commontask']
@@ -139,7 +140,7 @@ class TaskItemCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(TaskItemCreateView, self).get_context_data(**kwargs)
         context['page_title'] = u"Создать задачу"
-        context['username'] = auth.get_user(self.request).username
+        #context['username'] = auth.get_user(self.request).username
         return context
 
     def form_valid(self, form):
@@ -149,7 +150,7 @@ class TaskItemCreateView(CreateView):
 
 
 #Update current task
-class TaskItemUpdateView(UpdateView):
+class TaskItemUpdateView(MixinUserContext, UpdateView):
     model = TaskItem
     #success_url = reverse_lazy('tasks:tasks-list')
     fields = ['discription', 'status', 'commontask']
@@ -169,21 +170,17 @@ class TaskItemUpdateView(UpdateView):
         context['page_title'] = u"Редактирование задачи"
         #taskitem = get_object_or_404(TaskItem, id = self.kwargs['id'])
         #context['taskitem'] = taskitem
-        context['username'] = auth.get_user(self.request).username
+        #context['username'] = auth.get_user(self.request).username
         return context
 
 
 #Delete current task
-class TaskItemDeleteView(DeleteView):
+class TaskItemDeleteView(MixinUserContext, DeleteView):
     model = TaskItem
 
     def get_success_url(self):
         taskitem = get_object_or_404(TaskItem, id = self.kwargs['pk'])
         return reverse_lazy('tasks:task-detail', kwargs={'pk':taskitem.commontask.id})
-
-    def get_context_data(self, **kwargs):
-        context['username'] = auth.get_user(self.request).username
-        return context
 
     def delete(self, request, *args, **kwargs):
         taskitem = super (TaskItemDeleteView, self).delete(request, *args, **kwargs)

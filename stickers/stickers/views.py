@@ -2,10 +2,10 @@
 
 from django.shortcuts import render
 from django.contrib import auth
+from django.views.generic import TemplateView
+from tasks.views import MixinUserContext
 
 
 #Render Landing page (index.html)
-def show_index(request):
-	cont = 1
-    return render(request, 'index.html',
-    	{'username': auth.get_user(request).username},)
+class IndexView (MixinUserContext, TemplateView):
+	template_name = 'index.html'

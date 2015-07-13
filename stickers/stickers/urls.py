@@ -7,7 +7,7 @@ from stickers import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', views.show_index, name = 'index'),
+    url(r'^$', views.IndexView.as_view(), name = 'index'),
     #url(r'^desktop/', include('tasks.urls', namespace = "tasks")),
     url(r'^accounts/', include('registration.urls')),
     url(r'^accounts/profile/', include('tasks.urls', namespace = "tasks")),
